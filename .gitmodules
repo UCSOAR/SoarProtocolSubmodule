@@ -1,0 +1,3 @@
+[submodule "SoarProto"]
+	path = SoarProto
+	url = https://github.com/StudentOrganisationForAerospaceResearch/SoarProto.git

@@ -1,0 +1,42 @@
+/**
+ * FILE: SoarCoreProto.proto
+ * BRIEF: The wrapper for any SOAR message being sent
+ *        This wrapper contains feature that will be applied to ALL
+ *        proto messages such as ack/naks
+ * AUTHOR: Shivam Desai
+ */
+
+syntax = "proto3";
+package Proto;
+import "Proto/CommonProto/SensorData.proto";
+
+/**
+ *  1. A Node
+ */
+message SoarProtoMessage {
+    uint32 source = 1;
+    uint32 target = 2;
+
+    AckNack ackNak = 3;
+
+    oneof message {
+        SensorData sensorData = 4;
+    }
+}
+
+
+/*--------------    Helper Messages    --------------*/
+
+
+/*--------------    ACK/NAK    --------------*/
+
+// TODO: Implement a proper ack/nak architecture that can be universal across all proto messages
+
+
+// Every message should be re-transmitted by the sender if not acked
+message AckNack {
+    uint32 acking_msg_source = 1; // The source of the message that is being acknowledged or nacked
+    uint32 acking_msg_id = 2; // The message ID of the message that is being acknowledged or nacked
+    uint32 acking_sequence_num = 3; // The sequence number of the message that is being acknowledged or nacked
+    bool overrideAckNak = 4;
+}

@@ -1,0 +1,32 @@
+/**
+ * FILE: StateInfo.proto
+ * BRIEF: Message template to be used for any data relating to the state of our systems
+ * AUTHOR: Shivam Desai
+ */
+
+syntax = "proto3";
+package Proto;
+
+/*--------------    StateInfo    --------------*/
+
+// The Sensor Data Packet act as a wrapper for any sensor data
+message StateInfo {
+    uint32 timestamp = 1;
+
+    oneof message {
+
+    }
+}
+
+/*------------------    Definition of State Info Message Types    ------------------*/
+
+/*--------------    Power State    --------------*/
+message PowerState {
+    PowerSource powerSourceMessage = 1;
+}
+
+enum PowerSource {
+    INVALID_POWER_SOURCE = 0;
+    GROUND = 1;
+    ROCKET = 2;
+};
